@@ -21,4 +21,32 @@ To facilitate the analytical requirements, several key performance indicators (K
 * **Volume Metrics:** * *Total Discharges* (Count of records)
   * *Total Surgeons* (Distinct count of surgeon license numbers)
   * *Total Hospitals* (Distinct count of facility IDs)
-*
+* **Performance Metrics:** * *Average Cost per Discharge* * *Average Length of Stay (LOS)*
+* **Benchmarking & Variance Analysis:**
+  * Created **Overall Benchmarks** using `CALCULATE` and `ALL()` to ignore active filters and establish a baseline.
+  * Computed **Percentage Variance** for both Cost and LOS to evaluate how specific hospitals or segments perform relative to the overall average: `(Current - Overall) / Overall`.
+
+## Dashboard Architecture & Design
+The Power BI report is structured into a cohesive, interactive multi-page application prioritizing clean design, logical flow, and effective data storytelling.
+
+### 1. Executive Overview
+* **Purpose:** Answers *"What is the overall performance across hospitals?"*
+* **Features:** High-level KPI cards, aggregated visual analysis (by year, age group, program size), and interactive slicers for dynamic filtering.
+
+### 2. Hospital Comparison
+* **Purpose:** Answers *"How do hospitals perform relative to each other?"*
+* **Features:** Comparative charts, segmentation variables (age bins, gender), and variance analysis visuals to highlight facilities performing above or below the overall benchmarks.
+* **Interactive Bookmarking:** Utilizes buttons and bookmarks to toggle between analytical perspectives (e.g., swapping visuals to focus on *Financial Performance* vs. *Operational Efficiency*) without cluttering the screen.
+
+### 3. Hospital Profile (Drillthrough)
+* **Purpose:** Answers *"What is the detailed performance of a specific hospital?"*
+* **Features:** Configured as a Drillthrough destination based on `facility_name`. Features a dynamic title that updates based on the selected hospital, detailed facility-level metrics, and a "Back" button for seamless user navigation.
+
+### Navigation & UX
+* Integrated a **Page Navigator** for smooth transitions between the Executive Overview and Hospital Comparison pages.
+* Maintained strict design standards including consistent color palettes, typography, and clean alignment to prevent visual clutter.
+
+## Tools Used
+* **Power BI Desktop:** Report authoring, dashboard design, and interactive UX (Bookmarks, Drillthrough, Page Navigation).
+* **Power Query (M):** Web data extraction and conditional formatting.
+* **DAX:** Advanced measure creation, benchmarking, and variance calculations.
